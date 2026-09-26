@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Management System</title>
+
+    <link rel="stylesheet"
+          href="css/index.css">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>Hospital Management System</h1>
+
+        <p>Select your role to continue</p>
+
+
+        <div class="role-container">
+
+            <!-- ADMIN -->
+
+            <button
+                type="button"
+                onclick="selectRole('admin')">
+
+                <span>👨‍💼</span>
+
+                <strong>Admin</strong>
+
+                <small>
+                    Manage hospital system
+                </small>
+
+            </button>
+
+
+            <!-- DOCTOR -->
+
+            <button
+                type="button"
+                onclick="selectRole('doctor')">
+
+                <span>👨‍⚕️</span>
+
+                <strong>Doctor</strong>
+
+                <small>
+                    Manage patients and records
+                </small>
+
+            </button>
+
+
+            <!-- RECEPTIONIST -->
+
+            <button
+                type="button"
+                onclick="selectRole('receptionist')">
+
+                <span>🧑‍💼</span>
+
+                <strong>Receptionist</strong>
+
+                <small>
+                    Manage appointments and billing
+                </small>
+
+            </button>
+
+
+            <!-- NURSE -->
+
+            <button
+                type="button"
+                onclick="selectRole('nurse')">
+
+                <span>👩‍⚕️</span>
+
+                <strong>Nurse</strong>
+
+                <small>
+                    Manage patient care
+                </small>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function selectRole(role) {
+
+            /*
+            Save selected role
+            */
+
+            localStorage.setItem(
+                "selectedRole",
+                role
+            );
+
+
+            /*
+            Go to login page
+            */
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

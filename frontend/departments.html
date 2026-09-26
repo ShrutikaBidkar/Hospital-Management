@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Departments - Hospital Management System</title>
+
+    <link rel="stylesheet" href="../css/departments.css?v=10">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo-section">
+
+            <div class="logo-icon">
+                🏥
+            </div>
+
+            <div class="logo-text">
+                <h2>HMS</h2>
+                <p>Hospital System</p>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                🏠
+                <span>Dashboard</span>
+            </a>
+
+            <a href="patients.html">
+                🧑‍⚕️
+                <span>Patients</span>
+            </a>
+
+            <a href="doctors.html">
+                👨‍⚕️
+                <span>Doctors</span>
+            </a>
+
+            <a href="departments.html" class="active">
+                🏥
+                <span>Departments</span>
+            </a>
+
+            <a href="appointments.html">
+                📅
+                <span>Appointments</span>
+            </a>
+
+            <a href="admissions.html">
+                🛏️
+                <span>Admissions</span>
+            </a>
+
+            <a href="medical-records.html">
+                📋
+                <span>Medical Records</span>
+            </a>
+
+            <a href="prescriptions.html">
+                💊
+                <span>Prescriptions</span>
+            </a>
+
+            <a href="medicines.html">
+                💉
+                <span>Medicines</span>
+            </a>
+
+            <a href="billing.html">
+                💰
+                <span>Billing</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+
+        <!-- TOP HEADER -->
+        <header class="top-header">
+
+            <h1>Departments</h1>
+
+            <p>
+                Manage hospital departments
+            </p>
+
+        </header>
+
+
+
+        <!-- PAGE INTRO CARD -->
+        <section class="page-card">
+
+            <div class="page-card-content">
+
+                <div>
+                    <h2>Departments</h2>
+
+                    <p>
+                        View and manage hospital departments.
+                    </p>
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    onclick="openAddDepartment()">
+
+                    + Add Department
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SEARCH -->
+        <section class="search-card">
+
+            <input
+                type="text"
+                id="searchDepartment"
+                placeholder="Search department..."
+                onkeyup="searchDepartments()">
+
+        </section>
+
+
+
+        <!-- DEPARTMENT TABLE -->
+        <section class="table-card">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Department Name</th>
+
+                            <th>Description</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="departmentTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                class="loading">
+
+                                Loading departments...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==========================================
+         DEPARTMENT ADD / EDIT MODAL
+         ========================================== -->
+
+    <div
+        id="departmentModal"
+        class="modal">
+
+
+        <div class="modal-content">
+
+
+            <!-- MODAL HEADER -->
+            <div class="modal-header">
+
+                <div>
+
+                    <!-- ADDED modalTitle ID -->
+                    <h2 id="modalTitle">
+                        Add Department
+                    </h2>
+
+                    <p>
+                        Enter department information
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeAddDepartment()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+
+            <!-- FORM -->
+            <form
+                id="departmentForm"
+                onsubmit="addDepartment(event)">
+
+
+                <!-- ADDED hidden ID FOR EDIT -->
+                <input
+                    type="hidden"
+                    id="departmentId"
+                    name="departmentId">
+
+
+                <div class="form-grid">
+
+
+                    <!-- DEPARTMENT NAME -->
+                    <div class="form-group">
+
+                        <label>
+                            Department Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="department_name"
+                            name="department_name"
+                            placeholder="Example: Cardiology"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- DESCRIPTION -->
+                    <div class="form-group full-width">
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="4"
+                            placeholder="Enter department description"></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- FORM BUTTONS -->
+                <div class="form-actions">
+
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeAddDepartment()">
+
+                        Cancel
+
+                    </button>
+
+
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        Save
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/departments.js?v=1000"></script>
+    <script src="../js/role-sidebar.js?v=10"></script>
+
+</body>
+
+</html>

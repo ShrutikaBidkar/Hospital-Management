@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Billing - Hospital Management System</title>
+
+<link rel="stylesheet" href="../css/billing.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <h2>Hospital Management</h2>
+
+    <!-- Role-wise menu will appear here -->
+    <div id="roleSidebarMenu"></div>
+
+    <button id="logoutBtn">Logout</button>
+
+</div>
+
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <div class="topbar">
+        <h1>Billing</h1>
+    </div>
+
+
+    <div class="page-header">
+
+        <div>
+            <h2>Billing Management</h2>
+            <p>Manage patient invoices and payments</p>
+        </div>
+
+        <button
+            class="add-btn"
+            id="addBillBtn">
+            + Create Bill
+        </button>
+
+    </div>
+
+
+    <!-- Search -->
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search patient or invoice number..."
+        >
+
+    </div>
+
+
+    <!-- Billing Table -->
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Invoice Number</th>
+                    <th>Consultation</th>
+                    <th>Medicine</th>
+                    <th>Room</th>
+                    <th>Other</th>
+                    <th>Total</th>
+                    <th>Payment Status</th>
+                    <th>Payment Method</th>
+                    <th>Billing Date</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="billTableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- Add/Edit Bill Modal -->
+<div
+    class="modal"
+    id="billModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Create Bill
+            </h2>
+
+            <span
+                class="close"
+                id="closeModal">
+                &times;
+            </span>
+
+        </div>
+
+
+        <form id="billForm">
+
+            <input
+                type="hidden"
+                id="billId"
+            >
+
+
+            <!-- Patient -->
+            <div class="form-group">
+
+                <label>Patient</label>
+
+                <select
+                    id="patientId"
+                    required>
+
+                    <option value="">
+                        Select Patient
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Invoice -->
+            <div class="form-group">
+
+                <label>Invoice Number</label>
+
+                <input
+                    type="text"
+                    id="invoiceNumber"
+                    placeholder="Enter invoice number"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Fees -->
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Consultation Fee</label>
+
+                    <input
+                        type="number"
+                        id="consultationFee"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Medicine Fee</label>
+
+                    <input
+                        type="number"
+                        id="medicineFee"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Room Fee</label>
+
+                    <input
+                        type="number"
+                        id="roomFee"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Other Fee</label>
+
+                    <input
+                        type="number"
+                        id="otherFee"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Total -->
+            <div class="total-box">
+
+                <span>Total Amount</span>
+
+                <strong id="totalAmount">
+                    ₹0.00
+                </strong>
+
+            </div>
+
+
+            <!-- Payment Status -->
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Payment Status</label>
+
+                    <select id="paymentStatus">
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Paid">
+                            Paid
+                        </option>
+
+                        <option value="Partial">
+                            Partial
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Payment Method</label>
+
+                    <select id="paymentMethod">
+
+                        <option value="">
+                            Select Method
+                        </option>
+
+                        <option value="Cash">
+                            Cash
+                        </option>
+
+                        <option value="Card">
+                            Card
+                        </option>
+
+                        <option value="UPI">
+                            UPI
+                        </option>
+
+                        <option value="Bank Transfer">
+                            Bank Transfer
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Billing Date -->
+            <div class="form-group">
+
+                <label>Billing Date</label>
+
+                <input
+                    type="date"
+                    id="billingDate"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-btn">
+                Save Bill
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- Existing Billing JavaScript -->
+<script src="../js/billing.js"></script>
+
+
+<!-- Role-wise Sidebar -->
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const role = localStorage.getItem("selectedRole");
+
+        if (!role) {
+            window.location.href = "../index.html";
+            return;
+        }
+
+
+        const roleMenus = {
+
+            admin: [
+                ["dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["doctors.html", "👨‍⚕️", "Doctors"],
+                ["departments.html", "🏥", "Departments"],
+                ["appointments.html", "📅", "Appointments"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["medical-records.html", "📋", "Medical Records"],
+                ["prescriptions.html", "💊", "Prescriptions"],
+                ["medicines.html", "💉", "Medicines"],
+                ["billing.html", "💰", "Billing"],
+                ["users.html", "👤", "Users"],
+                ["reports.html", "📊", "Reports"]
+            ],
+
+            receptionist: [
+                ["receptionist-dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["appointments.html", "📅", "Appointments"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["billing.html", "💰", "Billing"]
+            ],
+
+            nurse: [
+                ["nurse-dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["medical-records.html", "📋", "Medical Records"],
+                ["appointments.html", "📅", "Appointments"]
+            ],
+
+            doctor: [
+                ["doctor-dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["appointments.html", "📅", "Appointments"],
+                ["medical-records.html", "📋", "Medical Records"],
+                ["prescriptions.html", "💊", "Prescriptions"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["reports.html", "📊", "Reports"]
+            ]
+
+        };
+
+
+        const menu = document.getElementById("roleSidebarMenu");
+
+        if (!menu || !roleMenus[role]) {
+            return;
+        }
+
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+
+        menu.innerHTML = "";
+
+
+        roleMenus[role].forEach(function (item) {
+
+            const link = document.createElement("a");
+
+            link.href = item[0];
+
+            link.innerHTML =
+                item[1] + " " + item[2];
+
+
+            if (currentPage === item[0]) {
+                link.classList.add("active");
+            }
+
+
+            menu.appendChild(link);
+
+        });
+
+
+        // Logout
+        const logoutButton =
+            document.getElementById("logoutBtn");
+
+
+        if (logoutButton) {
+
+            logoutButton.onclick = function () {
+
+                localStorage.removeItem("selectedRole");
+                localStorage.removeItem("user");
+
+
+                fetch(
+                    "../backend/api/logout.php",
+                    {
+                        method: "GET",
+                        credentials: "include"
+                    }
+                )
+                .finally(function () {
+
+                    window.location.href =
+                        "../index.html";
+
+                });
+
+            };
+
+        }
+
+    });
+
+</script>
+```
+
+</body>
+</html>

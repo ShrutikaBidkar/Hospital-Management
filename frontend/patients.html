@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patients - Hospital Management System</title>
+
+    <link rel="stylesheet" href="../css/patients.css?v=3">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo-section">
+            <div class="logo-icon">🏥</div>
+
+            <div>
+                <h2>HMS</h2>
+                <p>Hospital System</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+             <a href="#" id="roleDashboardLink">🏠 <span>Dashboard</span></a>
+
+            <a href="patients.html" class="active">
+                🧑‍⚕️ <span>Patients</span>
+            </a>
+
+            <a href="doctors.html">👨‍⚕️ <span>Doctors</span></a>
+
+            <a href="departments.html">🏥 <span>Departments</span></a>
+
+            <a href="appointments.html">📅 <span>Appointments</span></a>
+
+            <a href="admissions.html">🛏️ <span>Admissions</span></a>
+
+            <a href="medical-records.html">📋 <span>Medical Records</span></a>
+
+            <a href="prescriptions.html">💊 <span>Prescriptions</span></a>
+
+            <a href="medicines.html">💉 <span>Medicines</span></a>
+
+            <a href="billing.html">💰 <span>Billing</span></a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+        <header class="top-header">
+
+            <div>
+                <h1>Patients</h1>
+                <p>Manage patient information</p>
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CARD -->
+        <section class="page-card">
+
+            <div class="page-card-header">
+
+                <div>
+                    <h2>Patients</h2>
+                    <p>
+                        View and manage registered patient information.
+                    </p>
+                </div>
+
+                <button class="add-btn" onclick="openAddPatient()">
+                    + Add Patient
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH CARD -->
+        <section class="search-card">
+
+            <input
+                type="text"
+                id="searchPatient"
+                placeholder="Search patient by name, code, phone or email..."
+                onkeyup="searchPatients()"
+            >
+
+        </section>
+
+
+        <!-- TABLE CARD -->
+        <section class="table-card">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient Code</th>
+                            <th>Patient</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Blood Group</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="patientTableBody">
+
+                        <tr>
+                            <td colspan="8" class="loading">
+                                Loading patients...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ADD PATIENT MODAL -->
+    <div id="patientModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2>Add Patient</h2>
+                    <p>Enter patient information</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeAddPatient()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="patientForm" onsubmit="addPatient(event)">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Patient Code</label>
+                        <input
+                            type="text"
+                            id="patient_code"
+                            name="patient_code"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input
+                            type="text"
+                            id="first_name"
+                            name="first_name"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input
+                            type="text"
+                            id="last_name"
+                            name="last_name"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Gender</label>
+
+                        <select
+                            id="gender"
+                            name="gender"
+                        >
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+
+                        <input
+                            type="date"
+                            id="date_of_birth"
+                            name="date_of_birth"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            name="phone"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Blood Group</label>
+
+                        <select
+                            id="blood_group"
+                            name="blood_group"
+                        >
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Emergency Contact</label>
+
+                        <input
+                            type="text"
+                            id="emergency_contact"
+                            name="emergency_contact"
+                        >
+                    </div>
+
+
+                    <div class="form-group full-width">
+                        <label>Address</label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            rows="3"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeAddPatient()">
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+                        Add Patient
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/patients.js?v=2"></script>
+<script src="../js/role-sidebar.js?v=10"></script>
+
+</body>
+</html>

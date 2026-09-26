@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Nurse Dashboard - Hospital Management System</title>
+
+    <link rel="stylesheet"
+          href="../css/nurse-dashboard.css">
+
+</head>
+
+
+<body>
+
+<div class="dashboard-container">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <!-- Logo -->
+
+        <div class="logo-section">
+
+            <div class="logo-icon">
+                🏥
+            </div>
+
+            <div class="logo-text">
+
+                <h2>HMS</h2>
+
+                <p>Hospital System</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Navigation -->
+
+        <nav class="sidebar-menu">
+
+
+            <a href="nurse-dashboard.html"
+               class="menu-item active">
+
+                <span class="menu-icon">🏠</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="patients.html"
+               class="menu-item">
+
+                <span class="menu-icon">👥</span>
+
+                <span>Patients</span>
+
+            </a>
+
+
+            <a href="admissions.html"
+               class="menu-item">
+
+                <span class="menu-icon">🛏️</span>
+
+                <span>Admissions</span>
+
+            </a>
+
+
+            <a href="medical-records.html"
+               class="menu-item">
+
+                <span class="menu-icon">📋</span>
+
+                <span>Medical Records</span>
+
+            </a>
+
+
+            <a href="appointments.html"
+               class="menu-item">
+
+                <span class="menu-icon">📅</span>
+
+                <span>Appointments</span>
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- Logout -->
+
+        <button id="logoutBtn"
+                class="logout-btn">
+
+            <span>🚪</span>
+
+            Logout
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+
+            <div class="header-title">
+
+                <h1>Nurse Dashboard</h1>
+
+                <p>
+                    Welcome to Hospital Management System
+                </p>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <div class="notification">
+                    🔔
+                </div>
+
+
+                <div class="profile">
+
+
+                    <div class="profile-circle">
+                        N
+                    </div>
+
+
+                    <div class="profile-details">
+
+                        <strong id="headerUsername">
+                            Nurse
+                        </strong>
+
+                        <span>
+                            Nurse
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- ================= WELCOME BOX ================= -->
+
+        <section class="welcome-box">
+
+
+            <h2>
+                Welcome back,
+                <span id="nurseUsername">Nurse</span>!
+                👋
+            </h2>
+
+
+            <p>
+                Here's what's happening in your hospital today.
+            </p>
+
+
+        </section>
+
+
+
+        <!-- ================= STAT CARDS ================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- Patients -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon patients-icon">
+                    👥
+                </div>
+
+
+                <div class="stat-info">
+
+                    <p>Total Patients</p>
+
+                    <h2 id="totalPatients">
+                        0
+                    </h2>
+
+                    <span class="positive">
+                        Patient records
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Admissions -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon doctors-icon">
+                    🏥
+                </div>
+
+
+                <div class="stat-info">
+
+                    <p>Total Admissions</p>
+
+                    <h2 id="totalAdmissions">
+                        0
+                    </h2>
+
+                    <span class="positive">
+                        Current records
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Medical Records -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon appointments-icon">
+                    📋
+                </div>
+
+
+                <div class="stat-info">
+
+                    <p>Medical Records</p>
+
+                    <h2 id="totalRecords">
+                        0
+                    </h2>
+
+                    <span class="positive">
+                        Patient records
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Role -->
+
+            <div class="stat-card">
+
+
+                <div class="stat-icon beds-icon">
+                    👩‍⚕️
+                </div>
+
+
+                <div class="stat-info">
+
+                    <p>Your Role</p>
+
+                    <h2 class="role-value">
+                        Nurse
+                    </h2>
+
+                    <span class="positive">
+                        Active account
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= LOWER SECTION ================= -->
+
+        <section class="lower-grid">
+
+
+            <!-- Today's Appointments -->
+
+            <div class="appointments-box">
+
+
+                <div class="section-title">
+
+
+                    <h2>
+                        Today's Appointments
+                    </h2>
+
+
+                    <a href="appointments.html">
+                        View All
+                    </a>
+
+
+                </div>
+
+
+                <div id="todayAppointments"
+                     class="appointment-list">
+
+                    <div class="empty-message">
+
+                        No appointments for today.
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Quick Actions -->
+
+            <div class="quick-box">
+
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+
+                <div class="quick-grid">
+
+
+                    <a href="patients.html"
+                       class="quick-action">
+
+                        <span>👥</span>
+
+                        <div>
+
+                            <strong>Patients</strong>
+
+                            <small>
+                                View patients
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a href="admissions.html"
+                       class="quick-action">
+
+                        <span>🏥</span>
+
+                        <div>
+
+                            <strong>Admissions</strong>
+
+                            <small>
+                                View admissions
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a href="medical-records.html"
+                       class="quick-action">
+
+                        <span>📋</span>
+
+                        <div>
+
+                            <strong>Medical Records</strong>
+
+                            <small>
+                                View records
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a href="appointments.html"
+                       class="quick-action">
+
+                        <span>📅</span>
+
+                        <div>
+
+                            <strong>Appointments</strong>
+
+                            <small>
+                                View appointments
+                            </small>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            Hospital Management System © 2026
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<script src="../js/nurse-dashboard.js"></script>
+<script src="../js/role-sidebar.js"></script>
+</body>
+
+</html>

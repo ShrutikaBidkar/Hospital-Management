@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Management System - Dashboard</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🏥
+            </div>
+
+            <div>
+                <h2>HMS</h2>
+                <span>Hospital System</span>
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html" class="active">
+                🏠
+                <span>Dashboard</span>
+            </a>
+
+            <a href="patients.html">
+                👥
+                <span>Patients</span>
+            </a>
+
+            <a href="doctors.html">
+                👨‍⚕️
+                <span>Doctors</span>
+            </a>
+
+            <a href="departments.html">
+                🏥
+                <span>Departments</span>
+            </a>
+
+            <a href="appointments.html">
+                📅
+                <span>Appointments</span>
+            </a>
+
+            <a href="admissions.html">
+                🛏️
+                <span>Admissions</span>
+            </a>
+
+            <a href="medical-records.html">
+                📋
+                <span>Medical Records</span>
+            </a>
+
+            <a href="prescriptions.html">
+                💊
+                <span>Prescriptions</span>
+            </a>
+
+            <a href="medicines.html">
+                💉
+                <span>Medicines</span>
+            </a>
+
+            <a href="billing.html">
+                💰
+                <span>Billing</span>
+            </a>
+
+            <a href="users.html">
+                👤
+                <span>Users</span>
+            </a>
+            <a href="nurse-dashboard.html" class="menu-item">
+                👩‍⚕️
+                <span>Nurses</span>
+             </a>
+
+            <a href="reports.html">
+                📊
+                <span>Reports</span>
+            </a>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <button onclick="logout()">
+                🚪
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p>
+                    Welcome to Hospital Management System
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="notification">
+                    🔔
+                </div>
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div>
+
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-box">
+
+            <div>
+
+                <h2>
+                    Welcome back, Admin! 👋
+                </h2>
+
+                <p>
+                    Here's what's happening in your hospital today.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS CARDS -->
+
+        <section class="stats-grid">
+
+
+            <!-- PATIENTS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <p>Total Patients</p>
+
+                    <h2 id="totalPatients">
+                        0
+                    </h2>
+
+                    <span class="increase">
+                        +12% this month
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCTORS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍⚕️
+                </div>
+
+                <div>
+
+                    <p>Total Doctors</p>
+
+                    <h2 id="totalDoctors">
+                        0
+                    </h2>
+
+                    <span class="increase">
+                        +5% this month
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPOINTMENTS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <p>Appointments</p>
+
+                    <h2 id="totalAppointments">
+                        0
+                    </h2>
+
+                    <span class="increase">
+                        +8% this month
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVAILABLE BEDS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🛏️
+                </div>
+
+                <div>
+
+                    <p>Available Beds</p>
+
+                    <h2 id="availableBeds">
+                        0
+                    </h2>
+
+                    <span class="increase">
+                        Updated today
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTENT GRID -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- APPOINTMENTS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Today's Appointments
+                    </h3>
+
+                    <a href="appointments.html">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="appointment-list">
+
+                    <div class="appointment-item">
+
+                        <div class="patient-avatar">
+                            JD
+                        </div>
+
+                        <div class="appointment-info">
+
+                            <strong>
+                                John Doe
+                            </strong>
+
+                            <span>
+                                Dr. Sharma • Cardiology
+                            </span>
+
+                        </div>
+
+                        <div class="appointment-time">
+                            10:00 AM
+                        </div>
+
+                    </div>
+
+
+                    <div class="appointment-item">
+
+                        <div class="patient-avatar">
+                            AS
+                        </div>
+
+                        <div class="appointment-info">
+
+                            <strong>
+                                Anjali Sharma
+                            </strong>
+
+                            <span>
+                                Dr. Patel • Neurology
+                            </span>
+
+                        </div>
+
+                        <div class="appointment-time">
+                            11:30 AM
+                        </div>
+
+                    </div>
+
+
+                    <div class="appointment-item">
+
+                        <div class="patient-avatar">
+                            RK
+                        </div>
+
+                        <div class="appointment-info">
+
+                            <strong>
+                                Rahul Kumar
+                            </strong>
+
+                            <span>
+                                Dr. Singh • Orthopedics
+                            </span>
+
+                        </div>
+
+                        <div class="appointment-time">
+                            02:00 PM
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Quick Actions
+                    </h3>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <a href="patients.html">
+
+                        <span>👥</span>
+
+                        <strong>
+                            Add Patient
+                        </strong>
+
+                    </a>
+
+
+                    <a href="appointments.html">
+
+                        <span>📅</span>
+
+                        <strong>
+                            New Appointment
+                        </strong>
+
+                    </a>
+
+
+                    <a href="doctors.html">
+
+                        <span>👨‍⚕️</span>
+
+                        <strong>
+                            Add Doctor
+                        </strong>
+
+                    </a>
+
+
+                    <a href="billing.html">
+
+                        <span>💰</span>
+
+                        <strong>
+                            Create Bill
+                        </strong>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEPARTMENT SECTION -->
+
+        <section class="dashboard-card department-card">
+
+            <div class="card-header">
+
+                <h3>
+                    Departments
+                </h3>
+
+                <a href="departments.html">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="department-grid">
+
+
+                <div class="department">
+
+                    <div>
+                        ❤️
+                    </div>
+
+                    <h4>
+                        Cardiology
+                    </h4>
+
+                    <p>
+                        8 Doctors
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div>
+                        🧠
+                    </div>
+
+                    <h4>
+                        Neurology
+                    </h4>
+
+                    <p>
+                        6 Doctors
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div>
+                        🦴
+                    </div>
+
+                    <h4>
+                        Orthopedics
+                    </h4>
+
+                    <p>
+                        7 Doctors
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div>
+                        👶
+                    </div>
+
+                    <h4>
+                        Pediatrics
+                    </h4>
+
+                    <p>
+                        5 Doctors
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <p>
+                © 2026 Hospital Management System
+            </p>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- DASHBOARD JAVASCRIPT -->
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/role-sidebar.js?v=10"></script>
+
+</body>
+
+</html>

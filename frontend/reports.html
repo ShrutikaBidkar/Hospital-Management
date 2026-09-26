@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Reports - Hospital Management System</title>
+
+<link rel="stylesheet" href="../css/reports.css">
+```
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+```
+<h2>Hospital MS</h2>
+
+<!-- Role-wise sidebar will appear here -->
+
+<div id="roleSidebarMenu"></div>
+
+<button id="logoutBtn">
+    Logout
+</button>
+```
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+```
+<div class="topbar">
+
+    <h1>Reports</h1>
+
+</div>
+
+
+<div class="page-header">
+
+    <h2>Hospital Reports</h2>
+
+    <p>
+        View hospital management system statistics
+    </p>
+
+</div>
+
+
+<!-- SUMMARY CARDS -->
+
+<div class="report-cards">
+
+    <div class="report-card">
+        <h3>Total Patients</h3>
+        <p id="totalPatients">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Doctors</h3>
+        <p id="totalDoctors">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Departments</h3>
+        <p id="totalDepartments">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Appointments</h3>
+        <p id="totalAppointments">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Active Admissions</h3>
+        <p id="activeAdmissions">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Medicines</h3>
+        <p id="totalMedicines">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Medical Records</h3>
+        <p id="totalMedicalRecords">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Prescriptions</h3>
+        <p id="totalPrescriptions">0</p>
+    </div>
+
+    <div class="report-card">
+        <h3>Total Bills</h3>
+        <p id="totalBills">0</p>
+    </div>
+
+</div>
+
+
+<!-- FINANCIAL REPORT -->
+
+<div class="report-section">
+
+    <h2>Financial Report</h2>
+
+    <div class="financial-cards">
+
+        <div class="financial-card">
+
+            <h3>Total Revenue</h3>
+
+            <p id="totalRevenue">
+                ₹0
+            </p>
+
+        </div>
+
+
+        <div class="financial-card">
+
+            <h3>Paid Amount</h3>
+
+            <p id="paidAmount">
+                ₹0
+            </p>
+
+        </div>
+
+
+        <div class="financial-card">
+
+            <h3>Pending Amount</h3>
+
+            <p id="pendingAmount">
+                ₹0
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- APPOINTMENT REPORT -->
+
+<div class="report-section">
+
+    <div class="section-header">
+
+        <h2>Appointment Report</h2>
+
+        <button id="refreshAppointments">
+            Refresh
+        </button>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="appointmentsBody">
+
+                <tr>
+
+                    <td colspan="6">
+                        Loading...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ADMISSIONS REPORT -->
+
+<div class="report-section">
+
+    <div class="section-header">
+
+        <h2>Admissions Report</h2>
+
+        <button id="refreshAdmissions">
+            Refresh
+        </button>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Patient</th>
+                    <th>Admission Date</th>
+                    <th>Discharge Date</th>
+                    <th>Room</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="admissionsBody">
+
+                <tr>
+
+                    <td colspan="6">
+                        Loading...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- BILLING REPORT -->
+
+<div class="report-section">
+
+    <div class="section-header">
+
+        <h2>Billing Report</h2>
+
+        <button id="refreshBills">
+            Refresh
+        </button>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Invoice</th>
+                    <th>Patient</th>
+                    <th>Total Amount</th>
+                    <th>Payment Status</th>
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="billsBody">
+
+                <tr>
+
+                    <td colspan="6">
+                        Loading...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- REPORTS JAVASCRIPT -->
+
+<script src="../js/reports.js"></script>
+
+<!-- ROLE BASED SIDEBAR -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const role =
+            localStorage.getItem(
+                "selectedRole"
+            );
+
+
+        if (!role) {
+
+            window.location.href =
+                "../index.html";
+
+            return;
+
+        }
+
+
+        const roleMenus = {
+
+            admin: [
+
+                ["dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["doctors.html",
+                 "👨‍⚕️",
+                 "Doctors"],
+
+                ["departments.html",
+                 "🏥",
+                 "Departments"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["medical-records.html",
+                 "📋",
+                 "Medical Records"],
+
+                ["prescriptions.html",
+                 "💊",
+                 "Prescriptions"],
+
+                ["medicines.html",
+                 "💉",
+                 "Medicines"],
+
+                ["billing.html",
+                 "💰",
+                 "Billing"],
+
+                ["users.html",
+                 "👤",
+                 "Users"],
+
+                ["reports.html",
+                 "📊",
+                 "Reports"]
+
+            ],
+
+
+            receptionist: [
+
+                ["receptionist-dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["billing.html",
+                 "💰",
+                 "Billing"]
+
+            ],
+
+
+            nurse: [
+
+                ["nurse-dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["medical-records.html",
+                 "📋",
+                 "Medical Records"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"]
+
+            ],
+
+
+            doctor: [
+
+                ["doctor-dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"],
+
+                ["medical-records.html",
+                 "📋",
+                 "Medical Records"],
+
+                ["prescriptions.html",
+                 "💊",
+                 "Prescriptions"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["reports.html",
+                 "📊",
+                 "Reports"]
+
+            ]
+
+        };
+
+
+        const menu =
+            document.getElementById(
+                "roleSidebarMenu"
+            );
+
+
+        if (!menu) {
+            return;
+        }
+
+
+        if (!roleMenus[role]) {
+            return;
+        }
+
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+
+        menu.innerHTML = "";
+
+
+        roleMenus[role].forEach(
+            function (item) {
+
+                const link =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                link.href =
+                    item[0];
+
+
+                link.innerHTML =
+                    item[1] +
+                    " " +
+                    item[2];
+
+
+                if (
+                    currentPage ===
+                    item[0]
+                ) {
+
+                    link.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                menu.appendChild(
+                    link
+                );
+
+            }
+        );
+
+
+        const logoutButton =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.onclick =
+                function () {
+
+                    localStorage.removeItem(
+                        "selectedRole"
+                    );
+
+                    localStorage.removeItem(
+                        "user"
+                    );
+
+
+                    fetch(
+                        "../backend/api/logout.php",
+                        {
+                            method: "GET",
+                            credentials: "include"
+                        }
+                    ).finally(
+                        function () {
+
+                            window.location.href =
+                                "../index.html";
+
+                        }
+                    );
+
+                };
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

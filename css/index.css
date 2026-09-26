@@ -1,0 +1,187 @@
+/* ==========================================
+   INDEX PAGE
+   Role Selection
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+}
+
+
+/* Main Container */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+
+    padding: 40px 25px;
+
+    margin: auto;
+}
+
+
+/* Heading */
+
+.container > h1 {
+    text-align: center;
+
+    font-size: 36px;
+
+    color: #12355b;
+
+    margin-bottom: 10px;
+}
+
+
+.container > p {
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 16px;
+
+    margin-bottom: 35px;
+}
+
+
+/* ==========================================
+   ROLE CARDS
+========================================== */
+
+.role-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.role-container button {
+    min-height: 200px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background: white;
+
+    padding: 25px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.role-container button:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.14);
+}
+
+
+/* Role Icon */
+
+.role-container button span {
+    font-size: 48px;
+
+    margin-bottom: 15px;
+}
+
+
+/* Role Name */
+
+.role-container button strong {
+    font-size: 20px;
+
+    color: #12355b;
+
+    margin-bottom: 8px;
+}
+
+
+/* Role Description */
+
+.role-container button small {
+    font-size: 13px;
+
+    color: #6b7280;
+
+    text-align: center;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .role-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .container {
+        padding: 25px 15px;
+    }
+
+
+    .container > h1 {
+        font-size: 28px;
+    }
+
+
+    .role-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .role-container button {
+        min-height: 160px;
+    }
+
+}

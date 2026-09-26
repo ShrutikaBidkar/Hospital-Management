@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicines - Hospital Management System</title>
+
+    <link rel="stylesheet" href="../css/medicines.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>Hospital Management</h2>
+
+        <a href="dashboard.html">Dashboard</a>
+        <a href="patients.html">Patients</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="departments.html">Departments</a>
+        <a href="appointments.html">Appointments</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="medical-records.html">Medical Records</a>
+        <a href="prescriptions.html">Prescriptions</a>
+        <a href="medicines.html" class="active">Medicines</a>
+        <a href="billing.html">Billing</a>
+        <a href="users.html">Users</a>
+        <a href="reports.html">Reports</a>
+
+        <button id="logoutBtn">Logout</button>
+
+    </div>
+
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <div class="topbar">
+            <h1>Medicines</h1>
+        </div>
+
+
+        <div class="page-header">
+
+            <div>
+                <h2>Medicine Management</h2>
+                <p>Manage hospital medicines and stock</p>
+            </div>
+
+            <button
+                class="add-btn"
+                id="addMedicineBtn">
+                + Add Medicine
+            </button>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search medicine, category or manufacturer..."
+            >
+
+        </div>
+
+
+        <!-- Medicine Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Medicine Name</th>
+                        <th>Category</th>
+                        <th>Manufacturer</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Expiry Date</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="medicineTableBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- Add/Edit Medicine Modal -->
+
+    <div
+        class="modal"
+        id="medicineModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add Medicine
+                </h2>
+
+                <span
+                    class="close"
+                    id="closeModal">
+                    &times;
+                </span>
+
+            </div>
+
+
+            <form id="medicineForm">
+
+                <input
+                    type="hidden"
+                    id="medicineId"
+                >
+
+
+                <div class="form-group">
+
+                    <label>
+                        Medicine Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="medicineName"
+                        placeholder="Enter medicine name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <input
+                        type="text"
+                        id="category"
+                        placeholder="e.g. Antibiotic, Painkiller"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Manufacturer
+                    </label>
+
+                    <input
+                        type="text"
+                        id="manufacturer"
+                        placeholder="Enter manufacturer"
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            min="0"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Price
+                        </label>
+
+                        <input
+                            type="number"
+                            id="price"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Expiry Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="expiryDate"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+                    Save Medicine
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/medicines.js"></script>
+    <script src="../js/role-sidebar.js?v=10"></script>
+
+</body>
+</html>

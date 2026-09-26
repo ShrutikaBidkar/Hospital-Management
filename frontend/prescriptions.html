@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Prescriptions - Hospital Management System</title>
+
+<link rel="stylesheet" href="../css/prescriptions.css">
+```
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+```
+<h2>Hospital Management</h2>
+
+<div id="roleSidebarMenu"></div>
+
+<button id="logoutBtn">
+    Logout
+</button>
+```
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+```
+<div class="topbar">
+
+    <h1>Prescriptions</h1>
+
+</div>
+
+
+<div class="page-header">
+
+    <div>
+
+        <h2>Prescription Management</h2>
+
+        <p>
+            Manage patient prescriptions and medicines
+        </p>
+
+    </div>
+
+    <button
+        class="add-btn"
+        id="addPrescriptionBtn">
+
+        + Add Prescription
+
+    </button>
+
+</div>
+
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search patient, doctor or medicine..."
+    >
+
+</div>
+
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Medicine</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Duration</th>
+                <th>Prescription Date</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="prescriptionTableBody">
+        </tbody>
+
+    </table>
+
+</div>
+```
+
+</div>
+
+<!-- PRESCRIPTION MODAL -->
+
+<div
+    class="modal"
+    id="prescriptionModal">
+
+```
+<div class="modal-content">
+
+    <div class="modal-header">
+
+        <h2 id="modalTitle">
+            Add Prescription
+        </h2>
+
+        <span
+            class="close"
+            id="closeModal">
+
+            &times;
+
+        </span>
+
+    </div>
+
+
+    <form id="prescriptionForm">
+
+        <input
+            type="hidden"
+            id="prescriptionId">
+
+
+        <div class="form-group">
+
+            <label>
+                Patient
+            </label>
+
+            <select
+                id="patientId"
+                required>
+
+                <option value="">
+                    Select Patient
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Doctor
+            </label>
+
+            <select
+                id="doctorId"
+                required>
+
+                <option value="">
+                    Select Doctor
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Medicine
+            </label>
+
+            <select
+                id="medicineId"
+                required>
+
+                <option value="">
+                    Select Medicine
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    Dosage
+                </label>
+
+                <input
+                    type="text"
+                    id="dosage"
+                    placeholder="e.g. 500 mg"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Frequency
+                </label>
+
+                <input
+                    type="text"
+                    id="frequency"
+                    placeholder="e.g. Twice a day"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Duration
+            </label>
+
+            <input
+                type="text"
+                id="duration"
+                placeholder="e.g. 5 days"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Instructions
+            </label>
+
+            <textarea
+                id="instructions"
+                placeholder="Enter medicine instructions"
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Prescription Date
+            </label>
+
+            <input
+                type="date"
+                id="prescriptionDate"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="save-btn">
+
+            Save Prescription
+
+        </button>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<!-- EXISTING PRESCRIPTION JAVASCRIPT -->
+
+<script src="../js/prescriptions.js"></script>
+
+<!-- ROLE-WISE SIDEBAR -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const role =
+            localStorage.getItem(
+                "selectedRole"
+            );
+
+
+        if (!role) {
+
+            window.location.href =
+                "../index.html";
+
+            return;
+
+        }
+
+
+        const roleMenus = {
+
+            admin: [
+
+                ["dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["doctors.html",
+                 "👨‍⚕️",
+                 "Doctors"],
+
+                ["departments.html",
+                 "🏥",
+                 "Departments"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["medical-records.html",
+                 "📋",
+                 "Medical Records"],
+
+                ["prescriptions.html",
+                 "💊",
+                 "Prescriptions"],
+
+                ["medicines.html",
+                 "💉",
+                 "Medicines"],
+
+                ["billing.html",
+                 "💰",
+                 "Billing"],
+
+                ["users.html",
+                 "👤",
+                 "Users"],
+
+                ["reports.html",
+                 "📊",
+                 "Reports"]
+
+            ],
+
+
+            receptionist: [
+
+                ["receptionist-dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["billing.html",
+                 "💰",
+                 "Billing"]
+
+            ],
+
+
+            nurse: [
+
+                ["nurse-dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["medical-records.html",
+                 "📋",
+                 "Medical Records"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"]
+
+            ],
+
+
+            doctor: [
+
+                ["doctor-dashboard.html",
+                 "🏠",
+                 "Dashboard"],
+
+                ["patients.html",
+                 "👥",
+                 "Patients"],
+
+                ["appointments.html",
+                 "📅",
+                 "Appointments"],
+
+                ["medical-records.html",
+                 "📋",
+                 "Medical Records"],
+
+                ["prescriptions.html",
+                 "💊",
+                 "Prescriptions"],
+
+                ["admissions.html",
+                 "🛏️",
+                 "Admissions"],
+
+                ["reports.html",
+                 "📊",
+                 "Reports"]
+
+            ]
+
+        };
+
+
+        const menu =
+            document.getElementById(
+                "roleSidebarMenu"
+            );
+
+
+        if (!menu) {
+            return;
+        }
+
+
+        if (!roleMenus[role]) {
+            return;
+        }
+
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+
+        menu.innerHTML = "";
+
+
+        roleMenus[role].forEach(
+            function (item) {
+
+                const link =
+                    document.createElement(
+                        "a"
+                    );
+
+
+                link.href =
+                    item[0];
+
+
+                link.innerHTML =
+                    item[1] +
+                    " " +
+                    item[2];
+
+
+                if (
+                    currentPage ===
+                    item[0]
+                ) {
+
+                    link.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                menu.appendChild(
+                    link
+                );
+
+            }
+        );
+
+
+        const logoutButton =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.onclick =
+                function () {
+
+                    localStorage.removeItem(
+                        "selectedRole"
+                    );
+
+                    localStorage.removeItem(
+                        "user"
+                    );
+
+
+                    fetch(
+                        "../backend/api/logout.php",
+                        {
+                            method: "GET",
+                            credentials: "include"
+                        }
+                    ).finally(
+                        function () {
+
+                            window.location.href =
+                                "../index.html";
+
+                        }
+                    );
+
+                };
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

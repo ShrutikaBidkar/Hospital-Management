@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Medical Records - Hospital Management System</title>
+
+<link rel="stylesheet" href="../css/medical-records.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏥
+        </div>
+
+        <div>
+            <h2>HMS</h2>
+            <span>Hospital System</span>
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-menu">
+        <!-- Role-wise menu will be loaded here -->
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button id="roleLogoutBtn">
+            🚪
+            <span>Logout</span>
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>Medical Records</h1>
+
+            <p>
+                Manage patient medical records
+            </p>
+
+        </div>
+
+        <div class="admin-profile">
+
+            <div class="notification">
+                🔔
+            </div>
+
+            <div class="profile-icon">
+                A
+            </div>
+
+            <div>
+
+                <strong id="profileRole">
+                    Admin
+                </strong>
+
+                <small id="profileRoleText">
+                    Administrator
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h2>Medical Records</h2>
+
+            <p>
+                View and manage patient diagnosis,
+                symptoms and treatment information.
+            </p>
+
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="openAddModal()">
+
+            + Add Medical Record
+
+        </button>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search patient, doctor or diagnosis..."
+            onkeyup="searchRecords()">
+
+    </section>
+
+
+    <!-- TABLE -->
+
+    <section class="table-card">
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Patient</th>
+
+                        <th>Doctor</th>
+
+                        <th>Diagnosis</th>
+
+                        <th>Symptoms</th>
+
+                        <th>Treatment</th>
+
+                        <th>Record Date</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="recordsTableBody">
+
+                    <tr>
+
+                        <td colspan="8">
+                            Loading...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ADD / EDIT MODAL -->
+
+<div
+    class="modal"
+    id="recordModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Medical Record
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="recordForm">
+
+            <input
+                type="hidden"
+                id="recordId">
+
+
+            <div class="form-grid">
+
+
+                <!-- PATIENT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Patient *
+                    </label>
+
+                    <select
+                        id="patientId"
+                        required>
+
+                        <option value="">
+                            Select Patient
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DOCTOR -->
+
+                <div class="form-group">
+
+                    <label>
+                        Doctor
+                    </label>
+
+                    <select
+                        id="doctorId">
+
+                        <option value="">
+                            Select Doctor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- RECORD DATE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Record Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="recordDate"
+                        required>
+
+                </div>
+
+
+                <!-- DIAGNOSIS -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Diagnosis
+                    </label>
+
+                    <textarea
+                        id="diagnosis"
+                        rows="3"
+                        placeholder="Enter diagnosis"></textarea>
+
+                </div>
+
+
+                <!-- SYMPTOMS -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Symptoms
+                    </label>
+
+                    <textarea
+                        id="symptoms"
+                        rows="3"
+                        placeholder="Enter symptoms"></textarea>
+
+                </div>
+
+
+                <!-- TREATMENT -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Treatment
+                    </label>
+
+                    <textarea
+                        id="treatment"
+                        rows="3"
+                        placeholder="Enter treatment"></textarea>
+
+                </div>
+
+
+                <!-- NOTES -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        rows="3"
+                        placeholder="Enter additional notes"></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    Save Record
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../js/medical-records.js"></script>
+
+
+<!-- ROLE-WISE SIDEBAR -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const role = localStorage.getItem("selectedRole");
+
+        if (!role) {
+            window.location.href = "../index.html";
+            return;
+        }
+
+
+        const roleMenus = {
+
+            admin: [
+                ["dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["doctors.html", "👨‍⚕️", "Doctors"],
+                ["departments.html", "🏥", "Departments"],
+                ["appointments.html", "📅", "Appointments"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["medical-records.html", "📋", "Medical Records"],
+                ["prescriptions.html", "💊", "Prescriptions"],
+                ["medicines.html", "💉", "Medicines"],
+                ["billing.html", "💰", "Billing"],
+                ["users.html", "👤", "Users"],
+                ["reports.html", "📊", "Reports"]
+            ],
+
+            receptionist: [
+                ["receptionist-dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["appointments.html", "📅", "Appointments"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["billing.html", "💰", "Billing"]
+            ],
+
+            nurse: [
+                ["nurse-dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["medical-records.html", "📋", "Medical Records"],
+                ["appointments.html", "📅", "Appointments"]
+            ],
+
+            doctor: [
+                ["doctor-dashboard.html", "🏠", "Dashboard"],
+                ["patients.html", "👥", "Patients"],
+                ["appointments.html", "📅", "Appointments"],
+                ["medical-records.html", "📋", "Medical Records"],
+                ["prescriptions.html", "💊", "Prescriptions"],
+                ["admissions.html", "🛏️", "Admissions"],
+                ["reports.html", "📊", "Reports"]
+            ]
+
+        };
+
+
+        const menu = document.querySelector(".sidebar-menu");
+
+        if (!menu || !roleMenus[role]) {
+            return;
+        }
+
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+
+        menu.innerHTML = "";
+
+
+        roleMenus[role].forEach(function (item) {
+
+            const link = document.createElement("a");
+
+            link.href = item[0];
+
+            link.innerHTML =
+                item[1] +
+                '<span>' +
+                item[2] +
+                '</span>';
+
+
+            if (currentPage === item[0]) {
+                link.classList.add("active");
+            }
+
+
+            menu.appendChild(link);
+
+        });
+
+
+        const logoutButton =
+            document.getElementById("roleLogoutBtn");
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function () {
+
+                    localStorage.removeItem("selectedRole");
+                    localStorage.removeItem("user");
+
+                    fetch(
+                        "../backend/api/logout.php",
+                        {
+                            method: "GET",
+                            credentials: "include"
+                        }
+                    ).finally(function () {
+
+                        window.location.href =
+                            "../index.html";
+
+                    });
+
+                }
+            );
+
+        }
+
+
+        const roleName =
+            role.charAt(0).toUpperCase() +
+            role.slice(1);
+
+
+        const profileRole =
+            document.getElementById("profileRole");
+
+        const profileRoleText =
+            document.getElementById("profileRoleText");
+
+
+        if (profileRole) {
+            profileRole.textContent = roleName;
+        }
+
+
+        if (profileRoleText) {
+
+            if (role === "admin") {
+                profileRoleText.textContent =
+                    "Administrator";
+            }
+            else if (role === "receptionist") {
+                profileRoleText.textContent =
+                    "Receptionist";
+            }
+            else if (role === "nurse") {
+                profileRoleText.textContent =
+                    "Nurse";
+            }
+            else if (role === "doctor") {
+                profileRoleText.textContent =
+                    "Doctor";
+            }
+
+        }
+
+    });
+
+</script>
+<script src="../js/medical-records.js"></script>
+<script src="../js/role-sidebar.js?v=10"></script>
+
+
+</body>
+
+</html>

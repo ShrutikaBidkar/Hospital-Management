@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Dashboard - Hospital Management System</title>
+
+    <link rel="stylesheet" href="../css/doctor-dashboard.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-box">HMS</div>
+            <div>
+                <h2>Hospital</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="doctor-dashboard.html" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="patients.html">
+                👤 Patients
+            </a>
+
+            <a href="appointments.html">
+                📅 Appointments
+            </a>
+
+            <a href="medical-records.html">
+                📋 Medical Records
+            </a>
+
+            <a href="prescriptions.html">
+                💊 Prescriptions
+            </a>
+
+            <a href="admissions.html">
+                🏥 Admissions
+            </a>
+
+            <a href="reports.html">
+                📊 Reports
+            </a>
+
+            <a href="#" onclick="logout()">
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Doctor Dashboard</h1>
+                <p>Hospital Management System</p>
+            </div>
+
+            <div class="doctor-info">
+                <span id="doctorName">Doctor</span>
+                <span class="role">Doctor</span>
+            </div>
+
+        </header>
+
+
+        <section class="welcome-box">
+
+            <h2>Welcome, Dr. <span id="welcomeName">Doctor</span> 👋</h2>
+
+            <p>
+                Manage your patients, appointments, medical records
+                and prescriptions from here.
+            </p>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <div class="icon">👥</div>
+
+                <div>
+                    <h3 id="totalPatients">0</h3>
+                    <p>My Patients</p>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="icon">📅</div>
+
+                <div>
+                    <h3 id="totalAppointments">0</h3>
+                    <p>Appointments</p>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="icon">📋</div>
+
+                <div>
+                    <h3 id="totalRecords">0</h3>
+                    <p>Medical Records</p>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="icon">💊</div>
+
+                <div>
+                    <h3 id="totalPrescriptions">0</h3>
+                    <p>Prescriptions</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="section">
+
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+
+            <div class="quick-actions">
+
+                <a href="patients.html" class="action-card">
+                    <span>👤</span>
+                    <h3>View Patients</h3>
+                    <p>View patient information</p>
+                </a>
+
+                <a href="appointments.html" class="action-card">
+                    <span>📅</span>
+                    <h3>Appointments</h3>
+                    <p>View your appointments</p>
+                </a>
+
+                <a href="medical-records.html" class="action-card">
+                    <span>📋</span>
+                    <h3>Medical Records</h3>
+                    <p>Manage patient records</p>
+                </a>
+
+                <a href="prescriptions.html" class="action-card">
+                    <span>💊</span>
+                    <h3>Prescriptions</h3>
+                    <p>Manage prescriptions</p>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- TODAY APPOINTMENTS -->
+
+        <section class="section">
+
+            <div class="section-header">
+                <h2>Today's Appointments</h2>
+
+                <a href="appointments.html">
+                    View All
+                </a>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Time</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="todayAppointments">
+
+                        <tr>
+                            <td colspan="4">
+                                Loading appointments...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/doctor-dashboard.js"></script>
+    <script src="../js/role-sidebar.js"></script>
+</body>
+</html>

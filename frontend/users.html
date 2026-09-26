@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Hospital Management System</title>
+
+    <link rel="stylesheet" href="../css/users.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>Hospital MS</h2>
+
+    <a href="dashboard.html">Dashboard</a>
+    <a href="patients.html">Patients</a>
+    <a href="doctors.html">Doctors</a>
+    <a href="departments.html">Departments</a>
+    <a href="appointments.html">Appointments</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="medical-records.html">Medical Records</a>
+    <a href="prescriptions.html">Prescriptions</a>
+    <a href="medicines.html">Medicines</a>
+    <a href="billing.html">Billing</a>
+    <a href="users.html" class="active">Users</a>
+    <a href="reports.html">Reports</a>
+
+    <button id="logoutBtn">Logout</button>
+
+</div>
+
+
+<div class="main-content">
+
+    <div class="topbar">
+        <h1>Users</h1>
+    </div>
+
+    <div class="page-header">
+
+        <div>
+            <h2>User Management</h2>
+            <p>Manage Admin and Nurse accounts</p>
+        </div>
+
+        <button class="add-btn" id="addUserBtn">
+            + Add User
+        </button>
+
+    </div>
+
+
+    <div class="search-section">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by username or role..."
+        >
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="usersTableBody">
+
+                <tr>
+                    <td colspan="5">Loading...</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- Add/Edit User Modal -->
+
+<div class="modal" id="userModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">Add User</h2>
+
+            <span class="close" id="closeModal">&times;</span>
+
+        </div>
+
+
+        <form id="userForm">
+
+            <input type="hidden" id="userId">
+
+            <div class="form-group">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Role</label>
+
+                <select id="role" required>
+
+                    <option value="">Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Nurse">Nurse</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                >
+
+                <small id="passwordHelp">
+                    Required when adding a new user
+                </small>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button type="button" class="cancel-btn" id="cancelBtn">
+                    Cancel
+                </button>
+
+                <button type="submit" class="save-btn">
+                    Save User
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="../js/users.js"></script>
+<script src="../js/role-sidebar.js?v=10"></script>
+
+</body>
+</html>
